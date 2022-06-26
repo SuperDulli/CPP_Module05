@@ -47,7 +47,7 @@ public:
 	Form(std::string const& name, size_t gradeToSign, size_t gradeToExecute)
 		throw (Form::GradeTooHighException, Form::GradeTooLowException);
 	Form(Form const& other);
-	~Form(void);
+	virtual ~Form(void);
 
 	Form& operator=(Form const& other);
 
