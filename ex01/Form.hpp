@@ -43,7 +43,8 @@ public:
 	size_t				getGradeToSign(void) const;
 	size_t				getGradeToExecute(void) const;
 
-	void beSigned(Bureaucrat const& bureaucrat) throw(Form::GradeTooLowException, Form::FormAlreadySigned);
+	void beSigned(Bureaucrat const& bureaucrat)
+		throw(Form::GradeTooLowException, Form::FormAlreadySigned);
 
 private:
 

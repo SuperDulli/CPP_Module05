@@ -62,7 +62,8 @@ size_t Form::getGradeToSign(void) const { return m_gradeToSign; }
 
 size_t Form::getGradeToExecute(void) const { return m_gradeToExecute; }
 
-void Form::beSigned(Bureaucrat const& bureaucrat) throw(Form::GradeTooLowException, Form::FormAlreadySigned) {
+void Form::beSigned(Bureaucrat const& bureaucrat)
+throw(Form::GradeTooLowException, Form::FormAlreadySigned) {
 	if (this->m_isSigned) {
 		throw Form::FormAlreadySigned();
 	}
