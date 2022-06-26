@@ -24,6 +24,19 @@ char const* Form::FormAlreadySignedException::what(void) const throw() {
 	return "form is already signed";
 }
 
+char const* Form::FormNotSignedException::what(void) const throw() {
+	return "form is not signed";
+}
+
+Form::CannotExecuteException::CannotExecuteException(std::string const& msg) throw()
+	: m_msg(msg) {}
+
+Form::CannotExecuteException::~CannotExecuteException(void) throw() {}
+
+char const* Form::CannotExecuteException::what(void) const throw() {
+	return m_msg.c_str();
+}
+
 Form::Form(void): m_isSigned(false), m_gradeToSign(1), m_gradeToExecute(1) {}
 
 Form::Form(std::string const& name, size_t gradeToSign, size_t gradeToExecute)
@@ -71,6 +84,18 @@ throw(Form::GradeTooLowException, Form::FormAlreadySignedException) {
 		throw Form::GradeTooLowException("the bureaucrat's grade is too low to sign this form");
 	}
 	this->m_isSigned = true;
+}
+
+void Form::execute(Bureaucrat const& executor) const
+throw (Form::FormNotSignedException,
+		Form::GradeTooLowException,
+		Form::CannotExecuteException) {
+	if (!m_isSigned) {
+		throw Form::FormNotSignedException();
+	}
+	if (executor.getGrade() > m_gradeToExecute) {
+		throw Form::GradeTooLowException("grade of the executor is too low to for this form");
+	}
 }
 
 std::ostream& operator<<(std::ostream& os, Form const& form) {
