@@ -15,8 +15,6 @@ void handleException(std::exception& e) {
 	<< std::endl;
 }
 
-void createInvalidForm(std::string const& target, size_t sign, size_t exec);
-
 int main(void) {
 	std::cout << "--- Test begin ---" << std::endl;
 	Bureaucrat creature("Agrajag", 150);
