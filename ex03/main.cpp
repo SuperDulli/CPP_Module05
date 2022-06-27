@@ -37,9 +37,31 @@ int main(void) {
 	PresidentialPardonForm const	ppf("Ford Prefect");
 
 	{
-		std::cout << "-- test execeptions --" << std::endl;
+		std::cout << "-- test negatives --" << std::endl;
 
+		Intern intern;
+		Form* form;
 
+		form = intern.makeForm("", "me");
+		if (form) {
+			std::cout << *form << std::endl;
+		} else {
+			std::cout << "form pointer is NULL" << std::endl;
+		}
+
+		form = intern.makeForm("abdsfsd", "me");
+		if (form) {
+			std::cout << *form << std::endl;
+		} else {
+			std::cout << "form pointer is NULL" << std::endl;
+		}
+
+		form = intern.makeForm("creation shrubbery", "home");
+		if (form) {
+			std::cout << *form << std::endl;
+		} else {
+			std::cout << "form pointer is NULL" << std::endl;
+		}
 	}
 	std::cout << std::string(80, '-') << std::endl;
 	{
@@ -49,6 +71,20 @@ int main(void) {
 		Form* form;
 
 		form = intern.makeForm("robotomy request", "Bender");
+
+		president.signForm(*form);
+		president.executeForm(*form);
+
+		delete form;
+
+		form = intern.makeForm("presidential pardon", "Bender");
+
+		president.signForm(*form);
+		president.executeForm(*form);
+
+		delete form;
+
+		form = intern.makeForm("shrubbery creation", "home");
 
 		president.signForm(*form);
 		president.executeForm(*form);
